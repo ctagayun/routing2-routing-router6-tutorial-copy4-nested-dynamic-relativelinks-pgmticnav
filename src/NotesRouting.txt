@@ -1,0 +1,115 @@
+Link: https://github.com/facebook/create-react-app
+
+React Router Tutorial: https://www.robinwieruch.de/react-router/ 
+Completed Code: https://github.com/the-road-to-learn-react/react-router-6-examples
+
+1. How to create React project using Create-React-App 
+     https://react.dev/learn/start-a-new-react-project#create-react-app
+ 
+    npx create-react-app react-router6-tutorial - is a better way of creating a react app
+            the advantage of this command is that instead of giving a copy Create React App
+            package locally and manually maintaning it when it gets new releases,
+            for example, with npx, you dont really need to do that, you just use whatever is the 
+            recent release of Create React App directly from NPM registry in the server.
+
+        "x" is for execute. if the package is not availble npm will download the
+        package from the registry and cache it. It will also download a new one if needed
+        At this point npm, is installig its depemdencies namely: react, react-dom and react-scripts...
+
+  2. Next install react router:
+      - https://reactrouter.com/en/v6.3.0/getting-started/installation#basic-installation
+
+      - npm install react-router-dom@6
+
+      - Once your project is set up and React Router is installed as a dependency, 
+      open the src/index.js in your text editor. Import BrowserRouter from react-router-dom 
+      near the top of your file and wrap your app in a <BrowserRouter>:'
+        
+         import { BrowserRouter } from 'react-router-dom';
+
+      - next implement Navigation - scroll to "React Router: Matching Routes"
+
+  3. Essence Of React Router: 
+      The essence of React Router: setting up Link components and matching them  
+     with Route components. Links have a many to one relationship to Routes, 
+     so that there can be multiple Links in your application linking to the same Route.
+    
+     - Navigation implements React Router's Link component to facilitate 
+     routing in React. 
+        const Navigation = () => {
+          return (
+            <nav
+              style={{
+                borderBottom: 'solid 1px',
+                paddingBottom: '1rem',
+              }}
+            >
+              <Link to="/home">Home</Link>
+              <Link to="/users">Users</Link>
+            </nav>
+          );
+       };
+
+     - Next, we need to map the routes to an actual rendering 
+     by using React Router's Route component in the Navigation (Link Component)
+     that will actually render the "routes" (path) by using React's Router
+     ROUTE COMPONENT. Look at Navigtion and Routes you will see the direct
+     match.
+
+        <Navigation />
+
+        <Routes>
+          <Route path="home" element={<Home />} />
+          <Route path="users" element={<Users />} />
+        </Routes>
+
+  4. LAYOUT ROUTES, INDEX ROUTES, NO MATCH ROUTES
+       Next you see how the new Home and Users component share the same layout. 
+    We can create a Styling Component that can be shared.
+    //Not allowed
+     <Routes>
+        <Layout>
+          <Route path="home" element={<Home />} />
+          <Route path="users" element={<Users />} />
+        </Layout>
+      </Routes>
+
+     #Nested route is allowed
+     <Routes>
+        <Route element={<Layout />}>
+          <Route path="home" element={<Home />} />
+          <Route path="users" element={<Users />} />
+        </Route>
+      </Routes>
+
+   5. React Router: Dynamic and Nested Routes
+     - Read nested routes in detail: https://www.robinwieruch.de/react-router-nested-routes/
+
+   6. Relative Links in React Router
+
+      - go to https://www.robinwieruch.de/react-router/ 
+      - scroll to Relative Links in React Router
+
+      - The newest version of React Router comes with so-called Relative Links. 
+      We will examine this concept by looking at the Users component and its 
+      absolute /users/${user.id} path which is used for the Link component. 
+
+      - see demo: routing2-routing-router6-tutorial-copy4-nested-dynamic-relativelinks-pgmticnav
+       
+   7. Declarative and Programmatic Navigation
+       - see demo routing2-routing-router6-tutorial-copy4-nested-dynamic-relativelinks-pgmticnav
+       - scroll to Declarative and Programmatic Navigation
+
+       - So far, we have only used declarative navigation when using the 
+       Link or NavLink component. However, on certain occasions you want to 
+       be able to navigate a user programmatically via JavaScript. We will 
+       showcase this scenario by implementing a feature where it's possible 
+       to delete a user in the User component. 
+       
+       Scenario: After the deletion, the user 
+       should be navigated away from the User component and back to the 
+       Users component (from /users/:userId to /users).
+
+         Note: Read up Lazy Loading - https://www.robinwieruch.de/react-router-lazy-loading/
+
+    8. Search Params
